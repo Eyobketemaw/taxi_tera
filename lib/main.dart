@@ -8,8 +8,11 @@ import 'screens/route_results_screen.dart';
 import 'screens/detailed_route_screen.dart';
 import 'screens/saved_routes_screen.dart';
 import 'screens/settings_screen.dart';
+import 'package:firebase_core/firebase_core.dart';
 
-void main() {
+void main() async {
+  WidgetsFlutterBinding.ensureInitialized();
+  await Firebase.initializeApp();
   runApp(const TaxiTeraApp());
 }
 
@@ -22,7 +25,7 @@ class TaxiTeraApp extends StatelessWidget {
       title: 'Taxi Tera',
       theme: ThemeData(
       fontFamily: 'YourFont',
-      primaryColor: Color(0xFF000000), // Your exact colors
+      primaryColor: const Color(0xFF000000), // Your exact colors
 ),
       initialRoute: '/splash',
       routes: {

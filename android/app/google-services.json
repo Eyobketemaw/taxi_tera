@@ -1,0 +1,29 @@
+{
+  "project_info": {
+    "project_number": "678280642684",
+    "project_id": "taxitera-3ddad",
+    "storage_bucket": "taxitera-3ddad.firebasestorage.app"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:678280642684:android:ee862ac60f2cce6d0a09f9",
+        "android_client_info": {
+          "package_name": "com.example.taxi_tera"
+        }
+      },
+      "oauth_client": [],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBCCHL0OYiVuAvr7fPVPH2NVIx3-ayMIRk"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": []
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

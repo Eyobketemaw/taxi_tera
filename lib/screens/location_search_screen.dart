@@ -26,9 +26,7 @@ class SelectStartingPointScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Select Starting Point'),
-      ),
+      appBar: AppBar(title: const Text('Select Starting Point')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -54,7 +52,7 @@ class SelectStartingPointScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 20),
-            
+
             // Current Location Option
             GestureDetector(
               onTap: () {
@@ -89,20 +87,21 @@ class SelectStartingPointScreen extends StatelessWidget {
                       ],
                     ),
                     const Spacer(),
-                    Icon(Icons.arrow_forward_ios, size: 16, color: Colors.grey[400]),
+                    Icon(
+                      Icons.arrow_forward_ios,
+                      size: 16,
+                      color: Colors.grey[400],
+                    ),
                   ],
                 ),
               ),
             ),
             const SizedBox(height: 24),
-            
+
             // Suggested Landmarks
             const Text(
               'Suggested Landmarks',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),
             Expanded(
@@ -119,16 +118,13 @@ class SelectStartingPointScreen extends StatelessWidget {
                 },
               ),
             ),
-            
+
             // Recent Searches
             const Divider(),
             const SizedBox(height: 16),
             const Text(
               'Recent Searches',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             ListView.builder(
               shrinkWrap: true,
@@ -176,9 +172,7 @@ class SelectDestinationScreen extends StatelessWidget {
     ];
 
     return Scaffold(
-      appBar: AppBar(
-        title: const Text('Select Destination'),
-      ),
+      appBar: AppBar(title: const Text('Select Destination')),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
@@ -201,14 +195,11 @@ class SelectDestinationScreen extends StatelessWidget {
               ),
             ),
             const SizedBox(height: 24),
-            
+
             // Suggested Landmarks
             const Text(
               'Suggested Landmarks',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             const SizedBox(height: 12),
             Expanded(
@@ -225,16 +216,13 @@ class SelectDestinationScreen extends StatelessWidget {
                 },
               ),
             ),
-            
+
             // Recent Searches
             const Divider(),
             const SizedBox(height: 16),
             const Text(
               'Recent Searches',
-              style: TextStyle(
-                fontSize: 16,
-                fontWeight: FontWeight.w600,
-              ),
+              style: TextStyle(fontSize: 16, fontWeight: FontWeight.w600),
             ),
             ListView.builder(
               shrinkWrap: true,

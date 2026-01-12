@@ -1,5 +1,6 @@
 // screens/splash_screen.dart
 import 'package:flutter/material.dart';
+import 'package:taxi_tera/widgets/auth_wrapper.dart';
 
 class SplashScreen extends StatefulWidget {
   const SplashScreen({super.key});
@@ -12,26 +13,29 @@ class _SplashScreenState extends State<SplashScreen> {
   @override
   void initState() {
     super.initState();
-    _navigateToHome();
+    _navigateToAuthWrapper();
   }
 
-  void _navigateToHome() {
+  void _navigateToAuthWrapper() {
     Future.delayed(const Duration(seconds: 2), () {
       if (mounted) {
-        Navigator.pushReplacementNamed(context, '/home');
+        Navigator.pushReplacement(
+          context,
+          MaterialPageRoute(builder: (context) => const AuthWrapper()),
+        );
       }
     });
   }
 
   @override
   Widget build(BuildContext context) {
-    return Scaffold(
+    return const Scaffold(
       backgroundColor: Colors.blue,
       body: Center(
         child: Column(
           mainAxisAlignment: MainAxisAlignment.center,
           children: [
-            const Text(
+            Text(
               'TAXI TERA',
               style: TextStyle(
                 fontSize: 40,
@@ -39,16 +43,16 @@ class _SplashScreenState extends State<SplashScreen> {
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 20),
-            const Text(
+            SizedBox(height: 20),
+            Text(
               'Find your taxi route',
               style: TextStyle(
                 fontSize: 18,
                 color: Colors.white,
               ),
             ),
-            const SizedBox(height: 30),
-            const CircularProgressIndicator(color: Colors.white),
+            SizedBox(height: 30),
+            CircularProgressIndicator(color: Colors.white),
           ],
         ),
       ),

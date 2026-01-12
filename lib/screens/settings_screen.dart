@@ -117,10 +117,10 @@ class _SettingsScreenState extends State<SettingsScreen> {
               fontWeight: FontWeight.w600,
             ),
           ),
-          ListTile(
-            title: const Text('Version'),
-            subtitle: const Text('1.0.0'),
-            leading: const Icon(Icons.info),
+          const ListTile(
+            title: Text('Version'),
+            subtitle: Text('1.0.0'),
+            leading: Icon(Icons.info),
           ),
         ],
       ),

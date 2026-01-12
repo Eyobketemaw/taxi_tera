@@ -131,7 +131,8 @@ class _HomeScreenState extends State<HomeScreen> {
                           : () => Navigator.pushNamed(context, '/routeResults'),
                       style: ElevatedButton.styleFrom(
                         backgroundColor: Colors.grey.shade400,
-                        disabledBackgroundColor: const Color.fromARGB(255, 1, 10, 107),
+                        disabledBackgroundColor:
+                            const Color.fromARGB(255, 1, 10, 107),
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
@@ -141,7 +142,8 @@ class _HomeScreenState extends State<HomeScreen> {
                       child: const Text(
                         'Find Route',
                         style: TextStyle(
-                          fontWeight: FontWeight.w600, color: Colors.white,
+                          fontWeight: FontWeight.w600,
+                          color: Colors.white,
                         ),
                       ),
                     ),
@@ -151,39 +153,37 @@ class _HomeScreenState extends State<HomeScreen> {
             ),
 
             // ================= POPULAR PLACES =================
-const SizedBox(height: 25),
+            const SizedBox(height: 25),
 
-const Padding(
-  padding: EdgeInsets.symmetric(horizontal: 20),
-  child: Align(
-    alignment: Alignment.centerLeft,
-    child: Text(
-      'Popular Places',
-      style: TextStyle(
-        fontSize: 18,
-        fontWeight: FontWeight.bold,
-      ),
-    ),
-  ),
-),
+            const Padding(
+              padding: EdgeInsets.symmetric(horizontal: 20),
+              child: Align(
+                alignment: Alignment.centerLeft,
+                child: Text(
+                  'Popular Places',
+                  style: TextStyle(
+                    fontSize: 18,
+                    fontWeight: FontWeight.bold,
+                  ),
+                ),
+              ),
+            ),
 
-const SizedBox(height: 16),
+            const SizedBox(height: 16),
 
-SizedBox(
-  height: 170, // ⬅️ increased height
-  child: ListView(
-    scrollDirection: Axis.horizontal,
-    padding: const EdgeInsets.symmetric(horizontal: 20),
-    children: [
-      _placeCard('Piazza', 'assets/piazza.jpg'),
-      _placeCard('Merkato', 'assets/merkato.jpg'),
-      _placeCard('Stadium', 'assets/stadium.jpg'),
-      _placeCard('Megenagna', 'assets/megenagna.jpg'),
-
-    ],
-  ),
-),
-
+            SizedBox(
+              height: 170, // ⬅️ increased height
+              child: ListView(
+                scrollDirection: Axis.horizontal,
+                padding: const EdgeInsets.symmetric(horizontal: 20),
+                children: [
+                  _placeCard('Piazza', 'assets/piazza.jpg'),
+                  _placeCard('Merkato', 'assets/merkato.jpg'),
+                  _placeCard('Stadium', 'assets/stadium.jpg'),
+                  _placeCard('Megenagna', 'assets/megenagna.jpg'),
+                ],
+              ),
+            ),
 
             // ================= LOGIN LINK =================
             GestureDetector(
@@ -268,37 +268,42 @@ SizedBox(
   }
 
   Widget _placeCard(String title, String imagePath) {
-  return Container(
-    width: 150, // ⬅️ wider cards
-    margin: const EdgeInsets.only(right: 14),
-    decoration: BoxDecoration(
-      borderRadius: BorderRadius.circular(18),
-      image: DecorationImage(
-        image: AssetImage(imagePath),
-        fit: BoxFit.cover,
-      ),
-    ),
-    alignment: Alignment.bottomCenter,
-    child: Container(
-      width: double.infinity,
-      padding: const EdgeInsets.symmetric(vertical: 8),
-      decoration: BoxDecoration(
-        color: Colors.black.withOpacity(0.55),
-        borderRadius: const BorderRadius.vertical(
-          bottom: Radius.circular(18),
+    return Container(
+      width: 150,
+      margin: const EdgeInsets.only(right: 14),
+      child: ClipRRect(
+        borderRadius: BorderRadius.circular(18),
+        child: Stack(
+          fit: StackFit.expand,
+          children: [
+            Image.asset(
+              imagePath,
+              width: 150,
+              height: 170,
+              fit: BoxFit.cover,
+            ),
+            Align(
+              alignment: Alignment.bottomCenter,
+              child: Container(
+                width: double.infinity,
+                padding: const EdgeInsets.symmetric(vertical: 8),
+                decoration: BoxDecoration(
+                  color: Colors.black.withOpacity(0.55),
+                ),
+                child: Text(
+                  title,
+                  textAlign: TextAlign.center,
+                  style: const TextStyle(
+                    color: Colors.white,
+                    fontWeight: FontWeight.w600,
+                    fontSize: 15,
+                  ),
+                ),
+              ),
+            ),
+          ],
         ),
       ),
-      child: Text(
-        title,
-        textAlign: TextAlign.center,
-        style: const TextStyle(
-          color: Colors.white,
-          fontWeight: FontWeight.w600,
-          fontSize: 15,
-        ),
-      ),
-    ),
-  );
-}
-
+    );
+  }
 }
