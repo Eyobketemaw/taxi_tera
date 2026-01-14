@@ -1,16 +1,27 @@
-# taxi_tera
+# Taxi Tera
 
-A new Flutter project.
+Mobile app for public taxi route guidance in Addis Ababa (Flutter + Firebase)
 
-## Getting Started
+## What it does
+- Select From/To stops from real Firestore data  
+- Shows available routes with transfers, price, duration  
+- Step-by-step instructions in detail view  
+- Save favorite routes (logged-in users only)
 
-This project is a starting point for a Flutter application.
+## Features
+- Dynamic stops & routes from Firestore  
+- Firebase Auth (email + Google)  
+- Simple, static-first design – no live maps/APIs  
+- Target: Addis Ababa daily commuters & students
 
-A few resources to get you started if this is your first Flutter project:
+## How to run
+1. flutter pub get
+2. Set up Firebase (use your own project or contact me)
+3. flutter run
 
-- [Lab: Write your first Flutter app](https://docs.flutter.dev/get-started/codelab)
-- [Cookbook: Useful Flutter samples](https://docs.flutter.dev/cookbook)
+## Tech
+- Flutter
+- Firebase (Auth, Firestore)
+- Static predefined data for reliability
 
-For help getting started with Flutter development, view the
-[online documentation](https://docs.flutter.dev/), which offers tutorials,
-samples, guidance on mobile development, and a full API reference.
+Demo video: [link coming tomorrow]
