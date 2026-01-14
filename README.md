@@ -1,27 +1,33 @@
 # Taxi Tera
 
-Mobile app for public taxi route guidance in Addis Ababa (Flutter + Firebase)
+Mobile-only Flutter app for guiding users through public taxi routes in Addis Ababa.
 
-## What it does
-- Select From/To stops from real Firestore data  
-- Shows available routes with transfers, price, duration  
-- Step-by-step instructions in detail view  
-- Save favorite routes (logged-in users only)
+**Not a ride-hailing app** — it's a simple, reliable route finder using predefined static data.
 
-## Features
-- Dynamic stops & routes from Firestore  
-- Firebase Auth (email + Google)  
-- Simple, static-first design – no live maps/APIs  
-- Target: Addis Ababa daily commuters & students
+## Core Features
+- Select From/To stops from Firestore (dynamic, no hardcoding)
+- View available routes with transfers, estimated price & duration
+- Step-by-step instructions on detail screen
+- Save favorite routes (requires login)
+- Firebase Auth (email + Google Sign-In)
 
-## How to run
-1. flutter pub get
-2. Set up Firebase (use your own project or contact me)
-3. flutter run
+## Design Philosophy
+- Static-first: All routes/stops predefined in Firestore
+- No live maps or external APIs → low cost, high reliability
+- Public read access for browsing, private saves for users
+- Simple & defensible architecture (ideal for academic/project demo)
 
-## Tech
-- Flutter
-- Firebase (Auth, Firestore)
-- Static predefined data for reliability
+## Tech Stack
+- Flutter (Dart)
+- Firebase: Authentication + Firestore + (optional) Storage for maps
+- No custom backend server
 
-Demo video: [link coming tomorrow]
+## How to Run
+1. `flutter pub get`
+2. Set up Firebase project (use your own or ask me)
+3. `flutter run`
+
+## Demo Video
+[Link coming tomorrow – full walkthrough]
+
+Built by Eyob Ketemaw – Addis Ababa taxi commuter helper.
