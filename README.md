@@ -31,3 +31,13 @@ Mobile-only Flutter app for guiding users through public taxi routes in Addis Ab
 [Link coming tomorrow – full walkthrough]
 
 Built by Eyob Ketemaw – Addis Ababa taxi commuter helper.
+## Screenshots
+
+### Route Detail Screen
+![Route Detail Screen](https://github.com/Eyobketemaw/taxi_tera/blob/main/screenshots/detail.png?raw=true)
+
+### Home Screen (example)
+![Home Screen](https://raw.githubusercontent.com/Eyobketemaw/taxi_tera/main/screenshots/home.png)
+
+### Route Results Screen
+![Route Results](https://raw.githubusercontent.com/Eyobketemaw/taxi_tera/main/screenshots/results.png)
