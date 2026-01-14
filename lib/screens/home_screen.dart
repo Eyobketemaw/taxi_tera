@@ -149,13 +149,12 @@ class _HomeScreenState extends State<HomeScreen> {
                               _selectedDestination == null)
                           ? null
                           : () {
-                              // Pass from & to to RouteResultsScreen
                               Navigator.pushNamed(
                                 context,
                                 '/routeResults',
                                 arguments: {
-                                  'from': _selectedFrom,
-                                  'to': _selectedDestination,
+                                  'from': _selectedFrom as String,
+                                  'to': _selectedDestination as String,
                                 },
                               );
                             },

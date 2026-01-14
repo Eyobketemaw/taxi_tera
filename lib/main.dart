@@ -22,23 +22,24 @@ class TaxiTeraApp extends StatelessWidget {
   @override
   Widget build(BuildContext context) {
     return MaterialApp(
-        title: 'Taxi Tera',
-        theme: ThemeData(
-          fontFamily: 'YourFont',
-          primaryColor: const Color(0xFF000000), // Your exact colors
-        ),
-        initialRoute: '/splash',
-        routes: {
-          '/splash': (context) => const SplashScreen(),
-          '/home': (context) => const HomeScreen(),
-          '/login': (context) => const LoginScreen(),
-          '/signup': (context) => const SignUpScreen(),
-          '/selectStart': (context) => const SelectStartingPointScreen(),
-          '/selectDestination': (context) => const SelectDestinationScreen(),
-          '/routeResults': (context) => const RouteResultsScreen(),
-          '/detailedRoute': (context) => const DetailedRouteScreen(),
-          '/savedRoutes': (context) => const SavedRoutesScreen(),
-          '/settings': (context) => const SettingsScreen(),
-        });
+      title: 'Taxi Tera',
+      theme: ThemeData(
+        fontFamily: 'YourFont',
+        primaryColor: const Color(0xFF000000), // Your exact colors
+      ),
+      initialRoute: '/splash',
+      routes: {
+        '/splash': (context) => const SplashScreen(),
+        '/home': (context) => const HomeScreen(),
+        '/login': (context) => const LoginScreen(),
+        '/signup': (context) => const SignUpScreen(),
+        '/selectStart': (context) => const SelectStartingPointScreen(),
+        '/selectDestination': (context) => const SelectDestinationScreen(),
+        '/routeResults': (context) =>  const RouteResultsScreen(), 
+        '/detailedRoute': (context) => const DetailedRouteScreen(),
+        '/savedRoutes': (context) => const SavedRoutesScreen(),
+        '/settings': (context) => const SettingsScreen(),
+      },
+    );
   }
 }

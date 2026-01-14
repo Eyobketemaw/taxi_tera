@@ -1,4 +1,5 @@
 // screens/route_results_screen.dart
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class RouteResultsScreen extends StatelessWidget {
@@ -6,43 +7,94 @@ class RouteResultsScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<RouteInfo> routes = [
-      RouteInfo('Route 1', '1 transfer', '25 min', '20 Birr'),
-      RouteInfo('Route 2', '1 transfer', '30 min', '22 Birr'),
-      RouteInfo('Route 3', 'Direct', '35 min', '18 Birr'),
-      RouteInfo('Route 4', '1 transfer', '28 min', '24 Birr'),
-      RouteInfo('Route 5', '2 transfers', '40 min', '25 Birr'),
-      RouteInfo('Route 6', '1 transfer', '32 min', '21 Birr'),
-      RouteInfo('Route 7', '1 transfer', '33 min', '23 Birr'),
-    ];
+    // Extract from & to from navigation arguments
+    final args =
+        ModalRoute.of(context)!.settings.arguments as Map<String, dynamic>?;
+    final String from = args?['from'] as String? ?? 'Unknown';
+    final String to = args?['to'] as String? ?? 'Unknown';
 
+    // Now use from & to normally
     return Scaffold(
       appBar: AppBar(
-        title: const Text('Route Results'),
+        title: Text('$from → $to'),
       ),
       body: Padding(
         padding: const EdgeInsets.all(16.0),
         child: Column(
           crossAxisAlignment: CrossAxisAlignment.start,
           children: [
-            const Text(
-              'Merkato → Mexico',
-              style: TextStyle(
-                fontSize: 20,
+            Text(
+              '$from to $to',
+              style: const TextStyle(
+                fontSize: 24,
                 fontWeight: FontWeight.bold,
               ),
             ),
             const SizedBox(height: 8),
-            const Text(
-              '7 routes found',
-              style: TextStyle(color: Colors.grey),
-            ),
-            const SizedBox(height: 20),
             Expanded(
-              child: ListView.builder(
-                itemCount: routes.length,
-                itemBuilder: (context, index) {
-                  return _buildRouteCard(context, routes[index]);
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('routes')
+                    .where('from', isEqualTo: from)
+                    .where('to', isEqualTo: to)
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(
+                      child: Text('Error loading routes. Please try again.'),
+                    );
+                  }
+
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  final routeDocs = snapshot.data?.docs ?? [];
+
+                  if (routeDocs.isEmpty) {
+                    return const Center(
+                      child: Text(
+                        'No routes found for this path.\nTry different stops!',
+                        textAlign: TextAlign.center,
+                        style: TextStyle(fontSize: 16, color: Colors.grey),
+                      ),
+                    );
+                  }
+
+                  return Column(
+                    crossAxisAlignment: CrossAxisAlignment.start,
+                    children: [
+                      Text(
+                        '${routeDocs.length} route${routeDocs.length != 1 ? 's' : ''} found',
+                        style:
+                            const TextStyle(color: Colors.grey, fontSize: 16),
+                      ),
+                      const SizedBox(height: 16),
+                      Expanded(
+                        child: ListView.builder(
+                          itemCount: routeDocs.length,
+                          itemBuilder: (context, index) {
+                            final data =
+                                routeDocs[index].data() as Map<String, dynamic>;
+                            final transfers = data['transfers'] as int? ?? 0;
+                            final duration =
+                                data['duration'] as String? ?? 'Unknown';
+                            final price = data['price'] as num? ?? 0;
+
+                            return _buildRouteCard(
+                              context,
+                              RouteInfo(
+                                'Route ${index + 1}',
+                                '$transfers transfer${transfers > 1 ? 's' : ''}',
+                                duration,
+                                '$price Birr',
+                              ),
+                            );
+                          },
+                        ),
+                      ),
+                    ],
+                  );
                 },
               ),
             ),
@@ -56,14 +108,15 @@ class RouteResultsScreen extends StatelessWidget {
     return Card(
       margin: const EdgeInsets.only(bottom: 12),
       elevation: 2,
+      shape: RoundedRectangleBorder(borderRadius: BorderRadius.circular(12)),
       child: ListTile(
         contentPadding: const EdgeInsets.all(16),
-        title: const Text(
-          'Merkato to Mexico',
-          style: TextStyle(fontWeight: FontWeight.w600),
+        title: Text(
+          route.name,
+          style: const TextStyle(fontWeight: FontWeight.w600),
         ),
         subtitle: Text(
-          route.name,
+          route.transfers,
           style: const TextStyle(color: Colors.blue),
         ),
         trailing: SizedBox(
@@ -75,12 +128,10 @@ class RouteResultsScreen extends StatelessWidget {
               Row(
                 mainAxisAlignment: MainAxisAlignment.end,
                 children: [
-                  const Icon(Icons.transfer_within_a_station, size: 16, color: Colors.grey),
+                  const Icon(Icons.transfer_within_a_station,
+                      size: 16, color: Colors.grey),
                   const SizedBox(width: 4),
-                  Text(
-                    route.transfers,
-                    style: const TextStyle(fontSize: 12),
-                  ),
+                  Text(route.transfers, style: const TextStyle(fontSize: 12)),
                 ],
               ),
               const SizedBox(height: 4),
@@ -89,10 +140,7 @@ class RouteResultsScreen extends StatelessWidget {
                 children: [
                   const Icon(Icons.access_time, size: 16, color: Colors.grey),
                   const SizedBox(width: 4),
-                  Text(
-                    route.time,
-                    style: const TextStyle(fontSize: 12),
-                  ),
+                  Text(route.time, style: const TextStyle(fontSize: 12)),
                 ],
               ),
               const SizedBox(height: 4),
@@ -115,6 +163,7 @@ class RouteResultsScreen extends StatelessWidget {
           ),
         ),
         onTap: () {
+          // TODO: Later pass the full route data or route ID to detailed screen
           Navigator.pushNamed(context, '/detailedRoute');
         },
       ),
