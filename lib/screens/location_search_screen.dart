@@ -1,4 +1,5 @@
 // screens/location_search_screen.dart
+import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:flutter/material.dart';
 
 class SelectStartingPointScreen extends StatelessWidget {
@@ -6,18 +7,44 @@ class SelectStartingPointScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> landmarks = [
-      'Plassa',
-      'Merkato',
-      'Mexico',
-      'Stadium',
-      'Bole',
-      'Megenagna',
-      'Arat Kilo',
-      'Legehar',
-      'Meskel Square',
-      '4 Kilo',
-    ];
+    Expanded(
+      child: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('stops')
+            .orderBy('name') // Sort alphabetically for nice UX
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Center(child: Text('Error loading stops. Try again.'));
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final docs = snapshot.data?.docs ?? [];
+          if (docs.isEmpty) {
+            return const Center(child: Text('No stops found'));
+          }
+
+          final stops = docs.map((doc) {
+            return doc['name'] as String;
+          }).toList();
+
+          return ListView.builder(
+            itemCount: stops.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const Icon(Icons.location_on_outlined),
+                title: Text(stops[index]),
+                onTap: () {
+                  Navigator.pop(context, stops[index]);
+                },
+              );
+            },
+          );
+        },
+      ),
+    );
 
     final List<String> recentSearches = [
       'Bole to Megenagna',
@@ -105,14 +132,38 @@ class SelectStartingPointScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Expanded(
-              child: ListView.builder(
-                itemCount: landmarks.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: const Icon(Icons.location_on_outlined),
-                    title: Text(landmarks[index]),
-                    onTap: () {
-                      Navigator.pop(context, landmarks[index]);
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('stops')
+                    .orderBy('name')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(
+                        child: Text('Error loading stops. Try again.'));
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  final docs = snapshot.data?.docs ?? [];
+                  if (docs.isEmpty) {
+                    return const Center(child: Text('No stops found'));
+                  }
+
+                  final stops =
+                      docs.map((doc) => doc['name'] as String).toList();
+
+                  return ListView.builder(
+                    itemCount: stops.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        leading: const Icon(Icons.location_on_outlined),
+                        title: Text(stops[index]),
+                        onTap: () {
+                          Navigator.pop(context, stops[index]);
+                        },
+                      );
                     },
                   );
                 },
@@ -152,18 +203,44 @@ class SelectDestinationScreen extends StatelessWidget {
 
   @override
   Widget build(BuildContext context) {
-    final List<String> landmarks = [
-      'Plassa',
-      'Merkato',
-      'Mexico',
-      'Stadium',
-      'Bole',
-      'Megenagna',
-      'Arat Kilo',
-      'Legehar',
-      'Meskel Square',
-      '4 Kilo',
-    ];
+    Expanded(
+      child: StreamBuilder<QuerySnapshot>(
+        stream: FirebaseFirestore.instance
+            .collection('stops')
+            .orderBy('name') // Sort alphabetically for nice UX
+            .snapshots(),
+        builder: (context, snapshot) {
+          if (snapshot.hasError) {
+            return const Center(child: Text('Error loading stops. Try again.'));
+          }
+          if (snapshot.connectionState == ConnectionState.waiting) {
+            return const Center(child: CircularProgressIndicator());
+          }
+
+          final docs = snapshot.data?.docs ?? [];
+          if (docs.isEmpty) {
+            return const Center(child: Text('No stops found'));
+          }
+
+          final stops = docs.map((doc) {
+            return doc['name'] as String;
+          }).toList();
+
+          return ListView.builder(
+            itemCount: stops.length,
+            itemBuilder: (context, index) {
+              return ListTile(
+                leading: const Icon(Icons.location_on_outlined),
+                title: Text(stops[index]),
+                onTap: () {
+                  Navigator.pop(context, stops[index]);
+                },
+              );
+            },
+          );
+        },
+      ),
+    );
 
     final List<String> recentSearches = [
       'Bole to Megenagna',
@@ -203,14 +280,38 @@ class SelectDestinationScreen extends StatelessWidget {
             ),
             const SizedBox(height: 12),
             Expanded(
-              child: ListView.builder(
-                itemCount: landmarks.length,
-                itemBuilder: (context, index) {
-                  return ListTile(
-                    leading: const Icon(Icons.location_on_outlined),
-                    title: Text(landmarks[index]),
-                    onTap: () {
-                      Navigator.pop(context, landmarks[index]);
+              child: StreamBuilder<QuerySnapshot>(
+                stream: FirebaseFirestore.instance
+                    .collection('stops')
+                    .orderBy('name')
+                    .snapshots(),
+                builder: (context, snapshot) {
+                  if (snapshot.hasError) {
+                    return const Center(
+                        child: Text('Error loading stops. Try again.'));
+                  }
+                  if (snapshot.connectionState == ConnectionState.waiting) {
+                    return const Center(child: CircularProgressIndicator());
+                  }
+
+                  final docs = snapshot.data?.docs ?? [];
+                  if (docs.isEmpty) {
+                    return const Center(child: Text('No stops found'));
+                  }
+
+                  final stops =
+                      docs.map((doc) => doc['name'] as String).toList();
+
+                  return ListView.builder(
+                    itemCount: stops.length,
+                    itemBuilder: (context, index) {
+                      return ListTile(
+                        leading: const Icon(Icons.location_on_outlined),
+                        title: Text(stops[index]),
+                        onTap: () {
+                          Navigator.pop(context, stops[index]);
+                        },
+                      );
                     },
                   );
                 },

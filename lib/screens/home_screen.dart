@@ -10,7 +10,8 @@ class HomeScreen extends StatefulWidget {
 
 class _HomeScreenState extends State<HomeScreen> {
   int _currentIndex = 0;
-  String? _selectedDestination;
+  String? _selectedFrom; // New: stores selected starting point
+  String? _selectedDestination; // Already existed for To
 
   final Color primaryPurple = const Color(0xFF4B32D3);
 
@@ -87,26 +88,44 @@ class _HomeScreenState extends State<HomeScreen> {
                     ),
                     child: Column(
                       children: [
-                        _locationTile(
-                          icon: Icons.location_on,
-                          iconColor: Colors.green,
-                          title: 'From',
-                          value: 'Current Location',
-                          isPlaceholder: true,
+                        // From Location (now tappable)
+                        GestureDetector(
+                          onTap: () async {
+                            final selected = await Navigator.pushNamed(
+                              context,
+                              '/selectStart',
+                            );
+                            if (selected != null && selected is String) {
+                              setState(() {
+                                _selectedFrom = selected;
+                              });
+                            }
+                          },
+                          child: _locationTile(
+                            icon: Icons.location_on,
+                            iconColor: Colors.green,
+                            title: 'From',
+                            value: _selectedFrom ?? 'Current Location',
+                            isPlaceholder: _selectedFrom == null,
+                          ),
                         ),
+
                         const SizedBox(height: 10),
                         const Icon(Icons.swap_vert, color: Colors.grey),
                         const SizedBox(height: 10),
+
+                        // To Location (now tappable)
                         GestureDetector(
-                          onTap: () {
-                            Navigator.pushNamed(context, '/selectDestination')
-                                .then((value) {
-                              if (value != null) {
-                                setState(() {
-                                  _selectedDestination = value as String;
-                                });
-                              }
-                            });
+                          onTap: () async {
+                            final selected = await Navigator.pushNamed(
+                              context,
+                              '/selectDestination',
+                            );
+                            if (selected != null && selected is String) {
+                              setState(() {
+                                _selectedDestination = selected;
+                              });
+                            }
                           },
                           child: _locationTile(
                             icon: Icons.location_on,
@@ -126,13 +145,23 @@ class _HomeScreenState extends State<HomeScreen> {
                   SizedBox(
                     width: double.infinity,
                     child: ElevatedButton(
-                      onPressed: _selectedDestination == null
+                      onPressed: (_selectedFrom == null ||
+                              _selectedDestination == null)
                           ? null
-                          : () => Navigator.pushNamed(context, '/routeResults'),
+                          : () {
+                              // Pass from & to to RouteResultsScreen
+                              Navigator.pushNamed(
+                                context,
+                                '/routeResults',
+                                arguments: {
+                                  'from': _selectedFrom,
+                                  'to': _selectedDestination,
+                                },
+                              );
+                            },
                       style: ElevatedButton.styleFrom(
-                        backgroundColor: Colors.grey.shade400,
-                        disabledBackgroundColor:
-                            const Color.fromARGB(255, 1, 10, 107),
+                        backgroundColor: Colors.blue,
+                        disabledBackgroundColor: Colors.grey,
                         padding: const EdgeInsets.symmetric(vertical: 14),
                         shape: RoundedRectangleBorder(
                           borderRadius: BorderRadius.circular(14),
@@ -172,7 +201,7 @@ class _HomeScreenState extends State<HomeScreen> {
             const SizedBox(height: 16),
 
             SizedBox(
-              height: 170, // ⬅️ increased height
+              height: 170,
               child: ListView(
                 scrollDirection: Axis.horizontal,
                 padding: const EdgeInsets.symmetric(horizontal: 20),
@@ -180,7 +209,7 @@ class _HomeScreenState extends State<HomeScreen> {
                   _placeCard('Piazza', 'assets/piazza.jpg'),
                   _placeCard('Merkato', 'assets/merkato.jpg'),
                   _placeCard('Stadium', 'assets/stadium.jpg'),
-                  _placeCard('Megenagna', 'assets/megenagna.jpg'),
+                  _placeCard('Megenagna', 'assets/megenagna.png'),
                 ],
               ),
             ),
