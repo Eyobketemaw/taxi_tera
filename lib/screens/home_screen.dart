@@ -46,34 +46,43 @@ class _HomeScreenState extends State<HomeScreen> {
                           fontWeight: FontWeight.bold,
                         ),
                       ),
-                      Stack(
-                        children: [
-                          const Icon(Icons.notifications_none,
-                              color: Colors.white),
-                          Positioned(
-                            right: 0,
-                            top: 0,
-                            child: Container(
-                              width: 14,
-                              height: 14,
-                              decoration: const BoxDecoration(
-                                color: Colors.red,
-                                shape: BoxShape.circle,
+                      GestureDetector(
+                          onTap: () {
+                            ScaffoldMessenger.of(context).showSnackBar(
+                              const SnackBar(
+                                content: Text('No new notifications yet'),
+                                duration: Duration(seconds: 2),
                               ),
-                              child: const Center(
-                                child: Text(
-                                  '3',
-                                  style: TextStyle(
-                                    color: Colors.white,
-                                    fontSize: 9,
-                                    fontWeight: FontWeight.bold,
+                            );
+                          },
+                          child: Stack(
+                            children: [
+                              const Icon(Icons.notifications_none,
+                                  color: Colors.white),
+                              Positioned(
+                                right: 0,
+                                top: 0,
+                                child: Container(
+                                  width: 14,
+                                  height: 14,
+                                  decoration: const BoxDecoration(
+                                    color: Colors.red,
+                                    shape: BoxShape.circle,
+                                  ),
+                                  child: const Center(
+                                    child: Text(
+                                      '3',
+                                      style: TextStyle(
+                                        color: Colors.white,
+                                        fontSize: 9,
+                                        fontWeight: FontWeight.bold,
+                                      ),
+                                    ),
                                   ),
                                 ),
-                              ),
-                            ),
-                          )
-                        ],
-                      )
+                              )
+                            ],
+                          )),
                     ],
                   ),
 
@@ -111,7 +120,25 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
 
                         const SizedBox(height: 10),
-                        const Icon(Icons.swap_vert, color: Colors.grey),
+                        GestureDetector(
+                          onTap: () {
+                            if (_selectedFrom != null &&
+                                _selectedDestination != null) {
+                              setState(() {
+                                final temp = _selectedFrom;
+                                _selectedFrom = _selectedDestination;
+                                _selectedDestination = temp;
+                              });
+                            } else {
+                              ScaffoldMessenger.of(context).showSnackBar(
+                                const SnackBar(
+                                    content: Text('Select both stops first')),
+                              );
+                            }
+                          },
+                          child:
+                              const Icon(Icons.swap_vert, color: Colors.grey),
+                        ),
                         const SizedBox(height: 10),
 
                         // To Location (now tappable)
