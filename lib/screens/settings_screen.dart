@@ -22,7 +22,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _loadUserData() async {
     final authService = AuthService();
-    final user = await authService.getCurrentUser(); // Your method to get current user
+    final user =
+        await authService.getCurrentUser(); // Your method to get current user
     if (mounted) {
       setState(() {
         _currentUser = user;
@@ -65,7 +66,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _buildProfileItem(
               icon: Icons.person,
               title: 'Name',
-              subtitle: _currentUser!.displayName ?? 'User', // Google sets this, email falls back
+              subtitle: _currentUser!.displayName ??
+                  'User', // Google sets this, email falls back
             ),
             _buildProfileItem(
               icon: Icons.email,
@@ -75,7 +77,8 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _buildProfileItem(
               icon: Icons.phone,
               title: 'Phone',
-              subtitle: 'Not linked', // Firebase Auth doesn't store phone unless you use phone auth
+              subtitle:
+                  'Not linked', // Firebase Auth doesn't store phone unless you use phone auth
             ),
           ],
 
