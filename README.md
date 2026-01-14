@@ -37,7 +37,10 @@ Built by Eyob Ketemaw – Addis Ababa taxi commuter helper.
 ![Route Detail Screen](https://github.com/Eyobketemaw/taxi_tera/blob/main/screenshots/detail.png?raw=true)
 
 ### Home Screen (example)
-![Home Screen](https://raw.githubusercontent.com/Eyobketemaw/taxi_tera/main/screenshots/home.png)
+![Home Screen](https://github.com/Eyobketemaw/taxi_tera/blob/main/screenshots/home.png?raw=true)
 
 ### Route Results Screen
-![Route Results](https://raw.githubusercontent.com/Eyobketemaw/taxi_tera/main/screenshots/results.png)
+![Route Results](https://github.com/Eyobketemaw/taxi_tera/blob/main/screenshots/result.png?raw=true)
+
+### Route Search
+![Route Results](https://github.com/Eyobketemaw/taxi_tera/blob/main/screenshots/search.png?raw=true)
