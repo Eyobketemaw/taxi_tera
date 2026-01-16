@@ -47,42 +47,43 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                       GestureDetector(
-                          onTap: () {
-                            ScaffoldMessenger.of(context).showSnackBar(
-                              const SnackBar(
-                                content: Text('No new notifications yet'),
-                                duration: Duration(seconds: 2),
-                              ),
-                            );
-                          },
-                          child: Stack(
-                            children: [
-                              const Icon(Icons.notifications_none,
-                                  color: Colors.white),
-                              Positioned(
-                                right: 0,
-                                top: 0,
-                                child: Container(
-                                  width: 14,
-                                  height: 14,
-                                  decoration: const BoxDecoration(
-                                    color: Colors.red,
-                                    shape: BoxShape.circle,
-                                  ),
-                                  child: const Center(
-                                    child: Text(
-                                      '3',
-                                      style: TextStyle(
-                                        color: Colors.white,
-                                        fontSize: 9,
-                                        fontWeight: FontWeight.bold,
-                                      ),
+                        onTap: () {
+                          ScaffoldMessenger.of(context).showSnackBar(
+                            const SnackBar(
+                              content: Text('No new notifications yet'),
+                              duration: Duration(seconds: 2),
+                            ),
+                          );
+                        },
+                        child: Stack(
+                          children: [
+                            const Icon(Icons.notifications_none,
+                                color: Colors.white),
+                            Positioned(
+                              right: 0,
+                              top: 0,
+                              child: Container(
+                                width: 14,
+                                height: 14,
+                                decoration: const BoxDecoration(
+                                  color: Colors.red,
+                                  shape: BoxShape.circle,
+                                ),
+                                child: const Center(
+                                  child: Text(
+                                    '3',
+                                    style: TextStyle(
+                                      color: Colors.white,
+                                      fontSize: 9,
+                                      fontWeight: FontWeight.bold,
                                     ),
                                   ),
                                 ),
-                              )
-                            ],
-                          )),
+                              ),
+                            )
+                          ],
+                        ),
+                      ),
                     ],
                   ),
 
@@ -202,7 +203,23 @@ class _HomeScreenState extends State<HomeScreen> {
                         ),
                       ),
                     ),
-                  )
+                  ),
+
+                  // ================= LOGIN LINK =================
+                  const SizedBox(height: 20),
+                  Center(
+                    child: GestureDetector(
+                      onTap: () => Navigator.pushNamed(context, '/login'),
+                      child: const Text(
+                        'Login for better experience',
+                        style: TextStyle(
+                          color: Colors.white,
+                          fontSize: 16,
+                          decoration: TextDecoration.underline,
+                        ),
+                      ),
+                    ),
+                  ),
                 ],
               ),
             ),
@@ -237,18 +254,6 @@ class _HomeScreenState extends State<HomeScreen> {
                   _placeCard('Stadium', 'assets/stadium.jpg'),
                   _placeCard('Megenagna', 'assets/megenagna.png'),
                 ],
-              ),
-            ),
-
-            // ================= LOGIN LINK =================
-            GestureDetector(
-              onTap: () => Navigator.pushNamed(context, '/login'),
-              child: const Text(
-                'Login for better user experience',
-                style: TextStyle(
-                  color: Colors.blue,
-                  fontSize: 16,
-                ),
               ),
             ),
 

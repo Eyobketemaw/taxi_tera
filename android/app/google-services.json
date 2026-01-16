@@ -12,7 +12,20 @@
           "package_name": "com.example.taxi_tera"
         }
       },
-      "oauth_client": [],
+      "oauth_client": [
+        {
+          "client_id": "678280642684-29u8cfp3hg6863n6a85j313skfb4711j.apps.googleusercontent.com",
+          "client_type": 1,
+          "android_info": {
+            "package_name": "com.example.taxi_tera",
+            "certificate_hash": "51c276b3ec21aa7660dccbccd774b8fdbce36760"
+          }
+        },
+        {
+          "client_id": "678280642684-9s20r68guofjflqmpoi0nksdi0pv37no.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
       "api_key": [
         {
           "current_key": "AIzaSyBCCHL0OYiVuAvr7fPVPH2NVIx3-ayMIRk"
@@ -20,7 +33,19 @@
       ],
       "services": {
         "appinvite_service": {
-          "other_platform_oauth_client": []
+          "other_platform_oauth_client": [
+            {
+              "client_id": "678280642684-9s20r68guofjflqmpoi0nksdi0pv37no.apps.googleusercontent.com",
+              "client_type": 3
+            },
+            {
+              "client_id": "678280642684-6934990rnh1p13rd0th402rtliv5o0oh.apps.googleusercontent.com",
+              "client_type": 2,
+              "ios_info": {
+                "bundle_id": "com.example.taxiTera"
+              }
+            }
+          ]
         }
       }
     }

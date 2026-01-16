@@ -23,6 +23,7 @@ class TaxiTeraApp extends StatelessWidget {
   Widget build(BuildContext context) {
     return MaterialApp(
       title: 'Taxi Tera',
+      debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'YourFont',
         primaryColor: const Color(0xFF000000), // Your exact colors
