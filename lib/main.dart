@@ -1,4 +1,3 @@
-// main.dart
 import 'package:flutter/material.dart';
 import 'screens/splash_screen.dart';
 import 'screens/home_screen.dart';
@@ -26,7 +25,7 @@ class TaxiTeraApp extends StatelessWidget {
       debugShowCheckedModeBanner: false,
       theme: ThemeData(
         fontFamily: 'YourFont',
-        primaryColor: const Color(0xFF000000), // Your exact colors
+        primaryColor: const Color(0xFF000000), 
       ),
       initialRoute: '/splash',
       routes: {

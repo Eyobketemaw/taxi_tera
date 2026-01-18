@@ -1,7 +1,5 @@
-// screens/auth_screens.dart
 import 'package:flutter/material.dart';
-import '../services/auth_service.dart'; // Make sure this path is correct
-
+import '../services/auth_service.dart'; 
 class LoginScreen extends StatefulWidget {
   const LoginScreen({super.key});
 
@@ -101,7 +99,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 48),
 
-                // Email Field
                 const Text('Email',
                     style:
                         TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
@@ -119,7 +116,6 @@ class _LoginScreenState extends State<LoginScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // Password Field
                 const Text('Password',
                     style:
                         TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
@@ -143,7 +139,6 @@ class _LoginScreenState extends State<LoginScreen> {
                     onPressed: _isLoading
                         ? null
                         : () {
-                            // TODO: Implement forgot password flow
                           },
                     child: const Text('Forgot Password?'),
                   ),
@@ -151,7 +146,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 24),
 
-                // Login Button
                 ElevatedButton(
                   onPressed: _isLoading ? null : _loginWithEmail,
                   style: ElevatedButton.styleFrom(
@@ -173,7 +167,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 20),
 
-                // Google Sign-In Button
                 OutlinedButton.icon(
                   onPressed: _isLoading ? null : _signInWithGoogle,
                   icon: Image.asset('assets/google_logo.png', height: 24),
@@ -189,7 +182,6 @@ class _LoginScreenState extends State<LoginScreen> {
 
                 const SizedBox(height: 32),
 
-                // Sign Up Link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [
@@ -326,7 +318,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 40),
 
-                // Full Name
                 const Text('Full Name',
                     style:
                         TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
@@ -343,8 +334,7 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // Email
-                const Text('Email',
+               const Text('Email',
                     style:
                         TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
                 const SizedBox(height: 8),
@@ -361,7 +351,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // Phone Number
                 const Text('Phone Number',
                     style:
                         TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
@@ -379,7 +368,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 20),
 
-                // Password
                 const Text('Password',
                     style:
                         TextStyle(fontWeight: FontWeight.w600, fontSize: 16)),
@@ -397,7 +385,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
                 ),
                 const SizedBox(height: 32),
 
-                // Sign Up Button
                 ElevatedButton(
                   onPressed: _isLoading ? null : _signUpWithEmail,
                   style: ElevatedButton.styleFrom(
@@ -419,7 +406,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 const SizedBox(height: 20),
 
-                // Google Sign-In Button
                 OutlinedButton.icon(
                   onPressed: _isLoading ? null : _signInWithGoogle,
                   icon: Image.asset('assets/google_logo.png', height: 24),
@@ -435,7 +421,6 @@ class _SignUpScreenState extends State<SignUpScreen> {
 
                 const SizedBox(height: 32),
 
-                // Login Link
                 Row(
                   mainAxisAlignment: MainAxisAlignment.center,
                   children: [

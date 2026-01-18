@@ -1,4 +1,3 @@
-// screens/splash_screen.dart
 import 'package:flutter/material.dart';
 
 class SplashScreen extends StatefulWidget {
@@ -58,9 +57,9 @@ class _SplashScreenState extends State<SplashScreen> {
               Text(
                 'Find your taxi route',
                 style: TextStyle(
-                  fontSize: 18,
+                  fontSize: 24,
+                  fontWeight: FontWeight.bold,
                   color: Colors.white70,
-                  fontWeight: FontWeight.w300,
                 ),
               ),
               SizedBox(height: 60),

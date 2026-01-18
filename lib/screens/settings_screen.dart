@@ -7,7 +7,7 @@ class SettingsScreen extends StatefulWidget {
   const SettingsScreen({super.key});
 
   @override
-  _SettingsScreenState createState() => _SettingsScreenState();
+  State<SettingsScreen> createState() => _SettingsScreenState();
 }
 
 class _SettingsScreenState extends State<SettingsScreen> {
@@ -22,8 +22,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
 
   Future<void> _loadUserData() async {
     final authService = AuthService();
-    final user =
-        await authService.getCurrentUser(); // Your method to get current user
+    final user = await authService.getCurrentUser();
     if (mounted) {
       setState(() {
         _currentUser = user;
@@ -46,7 +45,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           const SizedBox(height: 24),
 
-          // Profile Section – now fully dynamic
+          // Profile Section
           const Text(
             'Profile',
             style: TextStyle(
@@ -66,8 +65,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _buildProfileItem(
               icon: Icons.person,
               title: 'Name',
-              subtitle: _currentUser!.displayName ??
-                  'User', // Google sets this, email falls back
+              subtitle: _currentUser!.displayName ?? 'Not set',
             ),
             _buildProfileItem(
               icon: Icons.email,
@@ -77,12 +75,11 @@ class _SettingsScreenState extends State<SettingsScreen> {
             _buildProfileItem(
               icon: Icons.phone,
               title: 'Phone',
-              subtitle:
-                  'Not linked', // Firebase Auth doesn't store phone unless you use phone auth
+              subtitle: _currentUser!.phoneNumber ?? 'Not linked',
             ),
           ],
 
-          // Logout – only show when logged in
+          // Logout
           if (_currentUser != null) ...[
             const Divider(height: 32),
             ListTile(
@@ -116,7 +113,7 @@ class _SettingsScreenState extends State<SettingsScreen> {
           ),
           const Divider(height: 32),
 
-          // Contact Us (unchanged)
+          // Contact Us
           const Text(
             'Contact Us',
             style: TextStyle(
@@ -131,8 +128,24 @@ class _SettingsScreenState extends State<SettingsScreen> {
             subtitle: '+251 911 123456',
             onTap: () {},
           ),
-          // ... other contact items ...
-
+          _buildContactItem(
+            icon: Icons.chat,
+            title: 'WhatsApp',
+            subtitle: 'Chat with us',
+            onTap: () {},
+          ),
+          _buildContactItem(
+            icon: Icons.photo_camera,
+            title: 'Instagram',
+            subtitle: '@tazitera',
+            onTap: () {},
+          ),
+          _buildContactItem(
+            icon: Icons.facebook,
+            title: 'Facebook',
+            subtitle: 'Taxi Tera',
+            onTap: () {},
+          ),
           const Divider(height: 32),
 
           // About
@@ -156,11 +169,13 @@ class _SettingsScreenState extends State<SettingsScreen> {
           children: [
             IconButton(
               icon: const Icon(Icons.home),
-              onPressed: () => Navigator.pushReplacementNamed(context, '/home'),
+              onPressed: () {
+                Navigator.pushReplacementNamed(context, '/home');
+              },
             ),
             IconButton(
               icon: const Icon(Icons.bookmark),
-              onPressed: () => Navigator.pushNamed(context, '/savedRoutes'),
+              onPressed: () {},
             ),
             IconButton(
               icon: const Icon(Icons.settings, color: Colors.blue),
